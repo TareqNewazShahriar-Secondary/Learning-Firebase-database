@@ -58,4 +58,18 @@ public class ListActivity extends AppCompatActivity
 		
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	protected void onPause()
+	{
+		super.onPause();
+		FirebaseUtil.detachListner();
+	}
+	
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		FirebaseUtil.attachListner();
+	}
 }
