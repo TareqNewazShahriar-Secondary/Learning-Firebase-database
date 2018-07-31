@@ -9,31 +9,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-
 public class ListActivity extends AppCompatActivity
 {
-	ArrayList<TravelDeal> deals;
+	/*ArrayList<TravelDeal> deals;
 	private FirebaseDatabase mFirebaseDb;
 	private DatabaseReference mDbRef;
-	private ChildEventListener mchildEventListner;
+	private ChildEventListener mchildEventListner;*/
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
-		
-		RecyclerView rvdeals = findViewById(R.id.recyclerViewDeals);
-		final DealsAdapter adapter = new DealsAdapter();
-		rvdeals.setAdapter(adapter);
-		LinearLayoutManager dealsLayoutManager =
-				new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-		rvdeals.setLayoutManager(dealsLayoutManager);
 	}
 	
 	@Override
@@ -70,6 +57,15 @@ public class ListActivity extends AppCompatActivity
 	protected void onResume()
 	{
 		super.onResume();
+		
+		FirebaseUtil.openFirebaseReference(FirebaseUtil.TRAVELDEALS_PATH, this);
+		RecyclerView rvdeals = findViewById(R.id.recyclerViewDeals);
+		final DealsAdapter adapter = new DealsAdapter(this);
+		rvdeals.setAdapter(adapter);
+		LinearLayoutManager dealsLayoutManager =
+				new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		rvdeals.setLayoutManager(dealsLayoutManager);
+		
 		FirebaseUtil.attachListner();
 	}
 }

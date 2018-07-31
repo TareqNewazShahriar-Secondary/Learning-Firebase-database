@@ -18,7 +18,7 @@ import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class FirebaseUtil
 {
-	public static String travelDealsPath = "traveldeals";
+	public static String TRAVELDEALS_PATH = "traveldeals";
 	public static ArrayList<TravelDeal> mTravelDeals;
 	
 	public static FirebaseDatabase mFirebaseDb;
@@ -45,7 +45,8 @@ public class FirebaseUtil
 				@Override
 				public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
 				{
-					signin();
+					if(firebaseAuth.getCurrentUser() == null)
+						signin();
 					Toast.makeText(callerActivity.getBaseContext(), "Welcome back!", Toast.LENGTH_SHORT).show();
 				}
 			};

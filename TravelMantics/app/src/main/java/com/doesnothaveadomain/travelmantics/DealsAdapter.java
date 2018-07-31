@@ -1,5 +1,6 @@
 package com.doesnothaveadomain.travelmantics;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -27,9 +28,9 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHold
 	private DatabaseReference mDbRef;
 	private ChildEventListener mchildEventListner;
 	
-	public DealsAdapter()
+	public DealsAdapter(Activity callerActivity)
 	{
-		FirebaseUtil.openFirebaseReference(FirebaseUtil.travelDealsPath);
+		FirebaseUtil.openFirebaseReference(FirebaseUtil.TRAVELDEALS_PATH, callerActivity);
 		mFirebaseDb = FirebaseUtil.mFirebaseDb;
 		mDbRef = FirebaseUtil.mDbRef;
 		deals = FirebaseUtil.mTravelDeals;
