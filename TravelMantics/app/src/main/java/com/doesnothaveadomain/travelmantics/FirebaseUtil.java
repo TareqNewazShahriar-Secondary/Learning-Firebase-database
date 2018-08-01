@@ -26,7 +26,7 @@ public class FirebaseUtil
 {
 	public static String TRAVELDEALS_PATH = "traveldeals";
 	public static ArrayList<TravelDeal> mTravelDeals;
-	public static boolean isAdmin = false;
+	public static boolean isAdmin;
 	
 	public static FirebaseDatabase mFirebaseDb;
 	public static DatabaseReference mDbRef;
@@ -41,6 +41,7 @@ public class FirebaseUtil
 	
 	public static void openFirebaseReference(String dbPath, final Activity callerActivity)
 	{
+		isAdmin = false;
 		if(mFirebaseUtil == null)
 		{
 			mFirebaseUtil = new FirebaseUtil();

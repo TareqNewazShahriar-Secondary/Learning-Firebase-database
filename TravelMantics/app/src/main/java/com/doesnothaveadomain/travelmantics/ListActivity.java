@@ -89,5 +89,7 @@ public class ListActivity extends AppCompatActivity
 		rvdeals.setLayoutManager(dealsLayoutManager);
 		
 		FirebaseUtil.attachListner();
+		
+		invalidateOptionsMenu();
 	}
 }

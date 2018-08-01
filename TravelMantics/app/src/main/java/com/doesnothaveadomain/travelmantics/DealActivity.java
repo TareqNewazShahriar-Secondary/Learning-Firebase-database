@@ -14,8 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DealActivity extends AppCompatActivity
 {
-	private FirebaseDatabase mFirebaseDatabase;
-	private DatabaseReference mDbReference;
 	EditText txtTitle;
 	EditText txtDescription;
 	EditText txtPrice;
@@ -28,8 +26,6 @@ public class DealActivity extends AppCompatActivity
 		setContentView(R.layout.activity_insert);
 		
 		FirebaseUtil.openFirebaseReference(FirebaseUtil.TRAVELDEALS_PATH, this);
-		mFirebaseDatabase = FirebaseUtil.mFirebaseDb;
-		mDbReference = FirebaseUtil.mDbRef;
 		
 		txtTitle = findViewById(R.id.txtTitle);
 		txtDescription  = findViewById(R.id.txtDescription);
@@ -75,6 +71,9 @@ public class DealActivity extends AppCompatActivity
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.save_menu, menu);
 		
+		menu.findItem(R.id.save_menu).setVisible(FirebaseUtil.isAdmin);
+		menu.findItem(R.id.delete_menu).setVisible(FirebaseUtil.isAdmin);
+		
 		return true;
 	}
 	
@@ -84,9 +83,9 @@ public class DealActivity extends AppCompatActivity
 		deal.setDescription(txtDescription.getText().toString());
 		deal.setPrice(txtPrice.getText().toString());
 		if(deal.getId() == null)
-			mDbReference.push().setValue(deal);
+			FirebaseUtil.mDbRef.push().setValue(deal);
 		else
-			mDbReference.child(deal.getId()).setValue(deal);
+			FirebaseUtil.mDbRef.child(deal.getId()).setValue(deal);
 	}
 	
 	private void Delete()
@@ -96,7 +95,7 @@ public class DealActivity extends AppCompatActivity
 			Toast.makeText(this, "Not an existing record.", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		mDbReference.child(deal.getId()).removeValue();
+		FirebaseUtil.mDbRef.child(deal.getId()).removeValue();
 	}
 	
 	private void clean()
