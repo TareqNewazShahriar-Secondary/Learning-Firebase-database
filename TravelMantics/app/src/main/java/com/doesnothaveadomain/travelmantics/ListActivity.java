@@ -1,13 +1,20 @@
 package com.doesnothaveadomain.travelmantics;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class ListActivity extends AppCompatActivity
 {
@@ -29,6 +36,9 @@ public class ListActivity extends AppCompatActivity
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.list_activity_menu, menu);
 		
+		MenuItem item = menu.findItem(R.id.insert_menu);
+		item.setVisible(FirebaseUtil.isAdmin);
+		
 		return true;
 	}
 	
@@ -40,6 +50,18 @@ public class ListActivity extends AppCompatActivity
 			case R.id.insert_menu:
 				Intent intent  = new Intent(this, DealActivity.class);
 				startActivity(intent);
+				return true;
+			case R.id.signout_menu:
+				AuthUI.getInstance()
+						.signOut(this)
+						.addOnCompleteListener(new OnCompleteListener<Void>() {
+							public void onComplete(@NonNull Task<Void> task) {
+								Log.d("sign-out", "Signed-out");
+								Toast.makeText(ListActivity.this, "Signed-out.", Toast.LENGTH_SHORT).show();
+								FirebaseUtil.attachListner();
+							}
+						});
+				FirebaseUtil.detachListner();
 				return true;
 		}
 		

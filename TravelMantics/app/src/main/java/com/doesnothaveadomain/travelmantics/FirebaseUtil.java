@@ -2,14 +2,20 @@ package com.doesnothaveadomain.travelmantics;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.common.stats.StatisticalEventTrackerProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +26,7 @@ public class FirebaseUtil
 {
 	public static String TRAVELDEALS_PATH = "traveldeals";
 	public static ArrayList<TravelDeal> mTravelDeals;
+	public static boolean isAdmin = false;
 	
 	public static FirebaseDatabase mFirebaseDb;
 	public static DatabaseReference mDbRef;
@@ -46,8 +53,16 @@ public class FirebaseUtil
 				public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth)
 				{
 					if(firebaseAuth.getCurrentUser() == null)
+					{
 						signin();
-					Toast.makeText(callerActivity.getBaseContext(), "Welcome back!", Toast.LENGTH_SHORT).show();
+						Toast.makeText(callerActivity.getBaseContext(), "Welcome back!", Toast.LENGTH_SHORT).show();
+						//FirebaseUtil.attachListner();
+					}
+					else
+					{
+						String uid = firebaseAuth.getCurrentUser().getUid();
+						checkAdmin(uid);
+					}
 				}
 			};
 		}
@@ -72,6 +87,47 @@ public class FirebaseUtil
 						.build(),
 				RC_SIGN_IN);
 	}
+	
+	private static void checkAdmin(String uid)
+	{
+		FirebaseUtil.isAdmin = false;
+		DatabaseReference dbRef = mFirebaseDb.getReference().child("admins").child(uid);
+		ChildEventListener listner = new ChildEventListener()
+		{
+			@Override
+			public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+			{
+				FirebaseUtil.isAdmin = true;
+				Log.d("admin-signed", "admin user signed-in.");
+			}
+			
+			@Override
+			public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+			{
+			
+			}
+			
+			@Override
+			public void onChildRemoved(@NonNull DataSnapshot dataSnapshot)
+			{
+			
+			}
+			
+			@Override
+			public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
+			{
+			
+			}
+			
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError)
+			{
+			
+			}
+		};
+		dbRef.addChildEventListener(listner);
+	}
+	
 	
 	public static void attachListner()
 	{
