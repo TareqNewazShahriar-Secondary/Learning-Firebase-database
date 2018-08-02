@@ -48,7 +48,7 @@ public class ListActivity extends AppCompatActivity
 		switch (item.getItemId())
 		{
 			case R.id.insert_menu:
-				Intent intent  = new Intent(this, DealActivity.class);
+				Intent intent  = new Intent(this, DealDetailActivity.class);
 				startActivity(intent);
 				return true;
 			case R.id.signout_menu:

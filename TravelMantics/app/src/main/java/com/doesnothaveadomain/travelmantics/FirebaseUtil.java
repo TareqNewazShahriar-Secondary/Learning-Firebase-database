@@ -5,22 +5,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.common.stats.StatisticalEventTrackerProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class FirebaseUtil
 {
@@ -30,6 +27,8 @@ public class FirebaseUtil
 	
 	public static FirebaseDatabase mFirebaseDb;
 	public static DatabaseReference mDbRef;
+	public static FirebaseStorage mStorage;
+	public static StorageReference mStorageRef;
 	
 	private static FirebaseUtil mFirebaseUtil;
 	private static FirebaseAuth mFirebaseAuth;
@@ -66,6 +65,7 @@ public class FirebaseUtil
 					}
 				}
 			};
+			connectStorage();
 		}
 		mTravelDeals = new ArrayList<>();
 		mDbRef = mFirebaseDb.getReference().child(dbPath);
@@ -138,5 +138,11 @@ public class FirebaseUtil
 	public static void detachListner()
 	{
 		mFirebaseAuth.removeAuthStateListener(mAuthStateListner);
+	}
+	
+	public static void connectStorage()
+	{
+		mStorage = FirebaseStorage.getInstance();
+		mStorageRef = mStorage.getReference().child("deal-images");
 	}
 }

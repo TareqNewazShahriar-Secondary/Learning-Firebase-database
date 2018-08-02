@@ -24,18 +24,14 @@ import java.util.ArrayList;
 public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHolder>
 {
 	ArrayList<TravelDeal> deals;
-	private FirebaseDatabase mFirebaseDb;
-	private DatabaseReference mDbRef;
-	private ChildEventListener mchildEventListner;
 	
 	public DealsAdapter(Activity callerActivity)
 	{
-		FirebaseUtil.openFirebaseReference(FirebaseUtil.TRAVELDEALS_PATH, callerActivity);
-		mFirebaseDb = FirebaseUtil.mFirebaseDb;
-		mDbRef = FirebaseUtil.mDbRef;
-		deals = FirebaseUtil.mTravelDeals;
+		deals = new ArrayList<>();
 		
-		mchildEventListner = new ChildEventListener()
+		//FirebaseUtil.openFirebaseReference(FirebaseUtil.TRAVELDEALS_PATH, callerActivity);
+		
+		ChildEventListener childEventListner = new ChildEventListener()
 		{
 			@Override
 			public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s)
@@ -72,7 +68,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHold
 			}
 		};
 		
-		mDbRef.addChildEventListener(mchildEventListner);
+		FirebaseUtil.mDbRef.addChildEventListener(childEventListner);
 	}
 	
 	@NonNull
@@ -127,7 +123,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHold
 			int position = getAdapterPosition();
 			Log.d("click", String.valueOf(position));
 			TravelDeal selectedDeal = deals.get(position);
-			Intent intent = new Intent(view.getContext(), DealActivity.class);
+			Intent intent = new Intent(view.getContext(), DealDetailActivity.class);
 			intent.putExtra("deal", selectedDeal);
 			view.getContext().startActivity(intent);
 		}
