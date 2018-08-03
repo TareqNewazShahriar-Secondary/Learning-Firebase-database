@@ -28,6 +28,8 @@ public class ListActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list);
+		
+		FirebaseUtil.openFirebaseReference(FirebaseUtil.TRAVELDEALS_PATH, this);
 	}
 	
 	@Override
@@ -37,7 +39,7 @@ public class ListActivity extends AppCompatActivity
 		inflater.inflate(R.menu.list_activity_menu, menu);
 		
 		MenuItem item = menu.findItem(R.id.insert_menu);
-		item.setVisible(FirebaseUtil.isAdmin);
+		//item.setVisible(FirebaseUtil.isAdmin);
 		
 		return true;
 	}
@@ -62,6 +64,7 @@ public class ListActivity extends AppCompatActivity
 							}
 						});
 				FirebaseUtil.detachListner();
+				FirebaseUtil.isAdmin = false;
 				return true;
 		}
 		

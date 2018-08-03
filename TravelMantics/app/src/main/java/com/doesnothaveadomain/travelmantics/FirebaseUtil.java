@@ -40,7 +40,6 @@ public class FirebaseUtil
 	
 	public static void openFirebaseReference(String dbPath, final Activity callerActivity)
 	{
-		isAdmin = false;
 		if(mFirebaseUtil == null)
 		{
 			mFirebaseUtil = new FirebaseUtil();

@@ -1,82 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DealDetailActivity">
-
-
-    <EditText
-        android:id="@+id/txtTitle"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/standard_margins"
-        android:layout_marginLeft="@dimen/standard_margins"
-        android:layout_marginRight="@dimen/standard_margins"
-        android:layout_marginStart="@dimen/standard_margins"
-        android:layout_marginTop="@dimen/standard_margins"
-        android:hint="@string/hint_title"
-        android:inputType="textCapWords"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <EditText
-        android:id="@+id/txtPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/standard_margins"
-        android:layout_marginLeft="@dimen/standard_margins"
-        android:layout_marginRight="@dimen/standard_margins"
-        android:layout_marginStart="@dimen/standard_margins"
-        android:layout_marginTop="@dimen/standard_margins"
-        android:ems="10"
-        android:hint="@string/hint_price"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle"/>
-
-    <EditText
-        android:id="@+id/txtDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/standard_margins"
-        android:layout_marginLeft="@dimen/standard_margins"
-        android:layout_marginRight="@dimen/standard_margins"
-        android:layout_marginStart="@dimen/standard_margins"
-        android:layout_marginTop="@dimen/standard_margins"
-        android:hint="@string/hint_description"
-        android:inputType="textCapSentences"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrice"/>
-
-    <Button
-        android:id="@+id/btnImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/standard_margins"
-        android:layout_marginLeft="@dimen/standard_margins"
-        android:layout_marginRight="@dimen/standard_margins"
-        android:layout_marginStart="@dimen/standard_margins"
-        android:layout_marginTop="@dimen/standard_margins"
-        android:text="Attach Image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescription"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="137dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="@dimen/standard_margins"
-        android:src="@drawable/fui_idp_button_background_google"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnImage"/>
+        android:layout_height="match_parent"
+        tools:context=".DealDetailActivity">
 
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standard_margins"
+            android:layout_marginLeft="@dimen/standard_margins"
+            android:layout_marginRight="@dimen/standard_margins"
+            android:layout_marginStart="@dimen/standard_margins"
+            android:layout_marginTop="@dimen/standard_margins"
+            android:hint="@string/hint_title"
+            android:inputType="textCapWords"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/txtPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standard_margins"
+            android:layout_marginLeft="@dimen/standard_margins"
+            android:layout_marginRight="@dimen/standard_margins"
+            android:layout_marginStart="@dimen/standard_margins"
+            android:layout_marginTop="@dimen/standard_margins"
+            android:ems="10"
+            android:hint="@string/hint_price"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"/>
+
+        <EditText
+            android:id="@+id/txtDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standard_margins"
+            android:layout_marginLeft="@dimen/standard_margins"
+            android:layout_marginRight="@dimen/standard_margins"
+            android:layout_marginStart="@dimen/standard_margins"
+            android:layout_marginTop="@dimen/standard_margins"
+            android:hint="@string/hint_description"
+            android:inputType="textCapSentences"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPrice"/>
+
+        <Button
+            android:id="@+id/btnImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standard_margins"
+            android:layout_marginLeft="@dimen/standard_margins"
+            android:layout_marginRight="@dimen/standard_margins"
+            android:layout_marginStart="@dimen/standard_margins"
+            android:layout_marginTop="@dimen/standard_margins"
+            android:text="Attach Image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescription"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard_margins"
+            android:src="@drawable/fui_idp_button_background_google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnImage"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
