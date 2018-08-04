@@ -107,6 +107,8 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHold
 			textViewTitle = itemView.findViewById(R.id.textViewTitle);
 			textViewDescription = itemView.findViewById(R.id.textViewDescription);
 			textViewPrice  = itemView.findViewById(R.id.textViewPrice);
+			imageViewImg = itemView.findViewById(R.id.imageViewImg);
+			
 			itemView.setOnClickListener(this);
 		}
 		
@@ -115,6 +117,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealViewHold
 			textViewTitle.setText(deal.getTitle());
 			textViewDescription.setText(deal.getDescription());
 			textViewPrice.setText(deal.getPrice());
+			DealDetailActivity.showImage(imageViewImg, deal.getImgUrl());
 		}
 		
 		@Override

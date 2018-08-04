@@ -10,14 +10,14 @@
     <ImageView
         android:id="@+id/imageViewImg"
         android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="@dimen/standard_margins"
         android:layout_marginStart="@dimen/standard_margins"
         android:layout_marginTop="@dimen/standard_margins"
         android:layout_weight="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light_focused"/>
+        app:srcCompat="?android:attr/colorButtonNormal"/>
 
     <TextView
         android:id="@+id/textViewTitle"

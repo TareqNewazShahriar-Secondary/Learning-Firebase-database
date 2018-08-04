@@ -56,7 +56,7 @@ public class DealDetailActivity extends AppCompatActivity
 		txtDescription.setText(deal.getDescription());
 		txtPrice.setText(deal.getPrice());
 		//new DownloadImageTask((ImageView) findViewById(R.id.imageView)).execute(deal.getImgUrl());
-		showImage(deal.getImgUrl());
+		showImage(imgView, deal.getImgUrl());
 		
 		Button btnImage = findViewById(R.id.btnImage);
 		btnImage.setOnClickListener(new View.OnClickListener()
@@ -111,7 +111,7 @@ public class DealDetailActivity extends AppCompatActivity
 		if(requestCode == REQUEST_ID && resultCode == RESULT_OK)
 		{
 			imgUri = data.getData();
-			showImage(imgUri.toString());
+			showImage(imgView, imgUri.toString());
 		}
 	}
 	
@@ -244,7 +244,7 @@ public class DealDetailActivity extends AppCompatActivity
 		//startActivity(intent);
 	}
 	
-	private void showImage(String urlString)
+	public static void showImage(ImageView imgView, String urlString)
 	{
 		if(urlString != null && !urlString.isEmpty())
 		{
